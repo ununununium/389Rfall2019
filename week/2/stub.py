@@ -5,7 +5,7 @@ import operator
 
 host = "157.230.179.99" # IP address here
 port = 1337 # Port here
-wordlist = "/usr/share/wordlists/rockyou.txt" # Point to wordlist file
+wordlist = "/Users/dokidokicrisis/wordlist/rockyou.txt" # Point to wordlist file
 
 def brute_force():
 	file = open(wordlist,"r")
