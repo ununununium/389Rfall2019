@@ -87,10 +87,12 @@ Discovered by using nmap
 7. The system that hosting the site is Apache httpd 2.4.29 (Ubuntu). The same approach as above.
     The result from nmap shows that the system that doing http service is Apache httpd 2.4.29 (Ubuntu)
 
-8. *CMSC389R-{n0_indexing_pls}
-  *CMSC389R-{html_h@x0r_lulz}
-  *CMSC389R-{Do_you-N0T_See_this}
-  *CMSC389R-{LOOKING_CLOSELY_PAYS}
+8.
+  CMSC389R-{n0_indexing_pls}
+  CMSC389R-{html_h@x0r_lulz}
+  CMSC389R-{Do_you-N0T_See_this}
+  CMSC389R-{LOOKING_CLOSELY_PAYS}
+  CMSC389R-{!enough_nrg_4_a_str0ng_Pa$$wrd}
 
 
 

