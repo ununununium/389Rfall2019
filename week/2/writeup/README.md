@@ -86,7 +86,8 @@ Discovered by using nmap
 |  80 | http  |  Apache httpd 2.4.29 ((Ubuntu))                             |
 |1337 | waste |                                                             |  
 
-  ![Alt][port_scan_result]
+[![alt text](https://github.com/ununununium/389Rfall2019/blob/master/week/2/writeup/screen_shots/port_scan_result.png)]
+
 
 7. The system that hosting the site is Apache httpd 2.4.29 (Ubuntu). The same approach as above.
     The result from nmap shows that the system that doing http service is Apache httpd 2.4.29 (Ubuntu)
@@ -114,5 +115,5 @@ Cd to home and I find the flag, here it is
 ```CMSC389R-{!enough_nrg_4_a_str0ng_Pa$$wrd}```
 
 [port_scan_result]: /screen_shots/port_scan_result.png
-[getpassword]: /screen_shots/getpassword.png
+[getpassword]: https://github.com/ununununium/389Rfall2019/blob/master/week/2/writeup/screen_shots/getpassword.png
 [getshell]: /screen_shots/getshell.png
