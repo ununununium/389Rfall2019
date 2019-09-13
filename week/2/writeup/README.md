@@ -36,8 +36,8 @@ Digital acknowledgement: *Yuting Zhong*
         I got server location from https://dnsdumpster.com by giving the IP address.  
 5. Hidden Directory/Files  
 
-    I Got this by using DirBuster
-        /
+    I Got this by using DirBuster  
+
         /assets/
         /views/
         /vendor/
