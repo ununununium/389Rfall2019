@@ -81,10 +81,10 @@ Digital acknowledgement: *Yuting Zhong*
 Discovered by using nmap
 ```root@kali:~# nmap -v -A -p 1-5000 157.230.179.99```    
  |ports|service|system|
-|---  |---    |---                                                          |
+|---|---|---|
 |  22 |  ssh  | OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)|
 |  80 | http  |  Apache httpd 2.4.29 ((Ubuntu))                             |
-|1337 | waste |                                                             |  
+| 1337 | waste |                                                             |  
 
 ![alt text][port_scan_result]
 
