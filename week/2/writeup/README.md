@@ -80,11 +80,7 @@ Digital acknowledgement: *Yuting Zhong*
 6. Open Ports:  
 Discovered by using nmap
 ```root@kali:~# nmap -v -A -p 1-5000 157.230.179.99```   
-  |   |   |   |
-|---|---|---|
-|   |   |   |
-|   |   |   |
-|   |   |   |
+  
 
  |ports|service|system|
 |---|---|---|
