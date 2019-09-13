@@ -79,14 +79,14 @@ Digital acknowledgement: *Yuting Zhong*
 
 6. Open Ports:  
 Discovered by using nmap
-```root@kali:~# nmap -v -A -p 1-5000 157.230.179.99```
+```root@kali:~# nmap -v -A -p 1-5000 157.230.179.99```  
 |ports|service|system                                                       |
 |---  |---    |---                                                          |
 |  22 |  ssh  | OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)|
 |  80 | http  |  Apache httpd 2.4.29 ((Ubuntu))                             |
 |1337 | waste |                                                             |  
 
-[![alt text](https://github.com/ununununium/389Rfall2019/blob/master/week/2/writeup/screen_shots/port_scan_result.png)]
+![alt text][port_scan_result]
 
 
 7. The system that hosting the site is Apache httpd 2.4.29 (Ubuntu). The same approach as above.
@@ -114,6 +114,6 @@ GetShell
 Cd to home and I find the flag, here it is  
 ```CMSC389R-{!enough_nrg_4_a_str0ng_Pa$$wrd}```
 
-[port_scan_result]: /screen_shots/port_scan_result.png
+[port_scan_result]: https://github.com/ununununium/389Rfall2019/blob/master/week/2/writeup/screen_shots/port_scan_result.png
 [getpassword]: https://github.com/ununununium/389Rfall2019/blob/master/week/2/writeup/screen_shots/getpassword.png
 [getshell]: /screen_shots/getshell.png
