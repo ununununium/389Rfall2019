@@ -34,4 +34,18 @@ def execute_cmd(cmd):
 
 
 if __name__ == '__main__':
-    print("IMPLEMENT ME")
+    while True:
+        #Process command from user input
+        input = raw_input('> ')
+        cmd = input.split()[0]
+
+        if cmd == 'shell':
+            print('cmd is shell')
+        elif cmd == 'pull':
+            print('cmd is pull')
+        elif cmd == 'help':
+            print('cmd is help')
+        elif cmd == 'quit':
+            print('cmd is help')
+        else:
+            print('Invalid Command')
