@@ -35,6 +35,11 @@ def pull(remote_path,local_path):
 	local_file.close()
 	s.close()
 
+def help():
+	print('shell                           ---Drop into an interactive shell and allow users to gracefully exit')
+	print('pull <remote-path> <local-path> ---Download files')
+	print('help                            ---Shows this help menu')
+	print('quit                            ---Quit the shell')
 
 if __name__ == '__main__':
 	cd = ''#stroe the current directory
@@ -55,16 +60,14 @@ if __name__ == '__main__':
 
 				#Otherwise run execute command
 				execute_cmd(cd + shell_cmd)
-		elif cmd == 'pull':
+		elif cmd == 'pull' and len(input.split()) == 3:
 			remote_path = input.split()[1]
 			local_path = input.split()[2]
 			pull(remote_path,local_path)
 		elif cmd == 'help':
-			print('shell                           ---Drop into an interactive shell and allow users to gracefully exit')
-			print('pull <remote-path> <local-path> ---Download files')
-			print('help                            ---Shows this help menu')
-			print('quit                            ---Quit the shell')
+			help()
 		elif cmd == 'quit':
 			break
 		else:
 			print('Invalid Command')
+			help()
