@@ -28,9 +28,9 @@ Digital acknowledgement: *Yuting Zhong*
     - Interactive Shell:  
       To implement an interactive shell, I should have an infinite loop that do command injection. The way I do it is just put ''';''' in front of each command user provides. After implementing these, my shell is already powerful enough to achieve almost every one line commands. However, this shell does not allow users to save the current working directory. For example, there is a flag exist in ```home/flag.txt```, me shell could help me reading this flag by using one line command ```cat home/flag.txt``` but if I want to seperate the command to two ```cd home``` ```cat flg.txt``` my shell will not work because this shell did save the current working directory. To accomplish this functionality, I should have a variable ```curr_dir``` to save the current working directory whenever users use ```cd``` command. And call ```cd curr_dir``` each time before user call on their command. Above all is how my interactive shell works.  
     - Pull:  
-      To implement pull, I should first use shell injection command to read the file ```;cat <remote_path>```. Then use python file IO functionality to write the returned string to ```<local_path>```
+      To implement pull, I should first use shell injection command to read the file ```;cat <remote_path>```. Then use python file IO functionality to write the returned string to ```<local_path>```  
     - Help:  
-      List all commands ```shell``` ```pull``` ```help``` ```quit``` and print detail description of each commands
+      List all commands ```shell``` ```pull``` ```help``` ```quit``` and print detail description of each commands  
     - Quit:  
       Break the loop to end the program.
 
