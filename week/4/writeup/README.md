@@ -19,7 +19,7 @@ Digital acknowledgement: *Yuting Zhong*
     -  Validating that the input is a number.
     -  Validating that the input contains only alphanumeric characters, no other syntax or whitespace.
 
-  Another solution is to sanitize users' inputs, avoid them from inputing the following characters: ```|  ; & $ > < ` \ ! ``` But remember this solution is not as strong as the two I mentioned above.
+    Another solution is to sanitize users' inputs, avoid them from inputing the following characters: ```|  ; & $ > < ` \ ! ``` But remember this solution is not as strong as the two I mentioned above.
 
 
 ### Part 2 (55 pts)
