@@ -1,19 +1,18 @@
 # Writeup 6 - Binaries I
 
-Name: *PUT YOUR NAME HERE*
-Section: *PUT YOUR SECTION NUMBER HERE*
+Name: *Yuting Zhong*
+Section: *0101*
 
 I pledge on my honor that I have not given or received any unauthorized assistance on this assignment or examination.
 
-Digital acknowledgement: *PUT YOUR NAME HERE*
+Digital acknowledgement: *0101*
 
 ## Assignment Writeup
 
 ### Part 1 (50 pts)
 
-*Please use this space to provide flag from program*
+```this is my flag```
 
 ### Part 2 (50 pts)
 
-*Please use this space to detail your approach and solutions for part 2. Include
-descriptions of checks implemented as well as your final input to produce flag.*
+First, I use the command ```./crackme``` I got permission denied. I realize I need to change the permission of ```crackme``` file. After I use the command ```chmod 777 crackme```, I could excute the ```crackme``` file. I used the command ```./crackme``` to excute ```crackme``` ,I got a message ```Did you even try disassembling?``` Then I opened ```Binary ninja``` and loaded the binary into it. I saw there are five functions on the symbols column: ```update_flag``` ```check1``` ```check2``` ```check3``` ```main```. I read the ```main``` function assembly code. From the frame of this code, I could see that main will call ```check1``` then ```check2``` then ```check3```, It will also print some string after each checking progress, and it will print something after pass ```check3```, that must be the flag. Then I read ```check1``` assembly code, I saw it push a string ```"Oh God"``` to ```strcmp```'s argument. I tried ```./crackme "Oh God"``` and I successfully passed check1, and it printed a message ```I wish you cared more about the environment```. I continued to see the assembly code of ```check2```
