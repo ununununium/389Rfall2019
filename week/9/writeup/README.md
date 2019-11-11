@@ -16,9 +16,9 @@ Digital acknowledgement: *Yuting Zhong*
 2. What kind of assessment tool(s) were the attackers using against the victim machine? List the name(s) of the tool(s) as well.
   - 
 3. What are the hackers' IP addresses, and where are they connecting from?
-
+ - ```159.203.113.181```  They are connecting from 101 Ave of the Americas 10th Floor, New York, 10013, US
 4. What port are they using to steal files on the server?
-
+ - 
 5. Which file did they steal? What kind of file is it? Do you recognize the file?
 
 6. Which file did the attackers leave behind on the server?
@@ -43,4 +43,6 @@ you'd like to develop in Python.
     2. Who authored `greetz.fpff`?
     3. List each section, giving us the data in it *and* its type.
     4. Report *at least* one flag hidden in `greetz.fpff`. Any other flag found will count as bonus points towards the *competition* portion of the syllabus.  
-     - ```CMSC389R-{h0w_2_iNt0_DNS_r3c0Rd5}``` : From txt records of the DNS.  
+     - ```CMSC389R-{h0w_2_iNt0_DNS_r3c0Rd5}``` : From txt records of the DNS. 
+     - ```CMSC389R-{0M3G4LUL_G3T_pWN3d_N00b}```: From the reddit post on the user  v0idcache  
+     
