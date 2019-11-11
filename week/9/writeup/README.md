@@ -14,7 +14,7 @@ Digital acknowledgement: *Yuting Zhong*
 1. Warmup: what IP address has been attacked?
   -  ```142.93.136.81``` Find the IP address from dnsdumpster.
 2. What kind of assessment tool(s) were the attackers using against the victim machine? List the name(s) of the tool(s) as well.
-
+  - 
 3. What are the hackers' IP addresses, and where are they connecting from?
 
 4. What port are they using to steal files on the server?
