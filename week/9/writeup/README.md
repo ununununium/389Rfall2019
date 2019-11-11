@@ -12,18 +12,20 @@ Digital acknowledgement: *Yuting Zhong*
 
 ### Part 1 (45 Pts)
 1. Warmup: what IP address has been attacked?
-  -  ```142.93.136.81``` Find the IP address from dnsdumpster.
+  -  ```142.93.136.81``` 
 2. What kind of assessment tool(s) were the attackers using against the victim machine? List the name(s) of the tool(s) as well.
-  - 
+  - The hacker was bruteforce ports on the server so he/she might used Nmap.
 3. What are the hackers' IP addresses, and where are they connecting from?
  - ```159.203.113.181```  They are connecting from 101 Ave of the Americas 10th Floor, New York, 10013, US
 4. What port are they using to steal files on the server?
- - 
+ - server:21, hacker:55914
 5. Which file did they steal? What kind of file is it? Do you recognize the file?
-
+ - find_me.jpeg, It is a ASCII text file, I do not recognize the file.
 6. Which file did the attackers leave behind on the server?
-
+ - `greetz.fpff`
 7. What is a countermeasure to prevent this kind of intrusion from happening again? Note: disabling the vulnerable service is *not* an option.
+ - Limit the ip request faliure times.
+ - Use whitelist, only the authorized IPs on the whitelist could access the server.
 
 ### Part 2 (55 Pts)
 
@@ -45,4 +47,6 @@ you'd like to develop in Python.
     4. Report *at least* one flag hidden in `greetz.fpff`. Any other flag found will count as bonus points towards the *competition* portion of the syllabus.  
      - ```CMSC389R-{h0w_2_iNt0_DNS_r3c0Rd5}``` : From txt records of the DNS. 
      - ```CMSC389R-{0M3G4LUL_G3T_pWN3d_N00b}```: From the reddit post on the user  v0idcache  
-     
+     - ```}R983CSMC_perg_tndid_u0y_yllufep0h{-R983CSMC``` or revesed ```CMSC389R-{h0pefully_y0udidnt_grep_CMSC389R}```: From the data of TCP stream on tcp.stream eq 1009
+
+
