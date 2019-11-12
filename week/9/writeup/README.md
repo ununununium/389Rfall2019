@@ -46,7 +46,7 @@ you'd like to develop in Python.
     2. Who authored `greetz.fpff`?
      - fl1nch
     3. List each section, giving us the data in it *and* its type.  
-  -  -------  SEC1  -------  
+  		-  -------  SEC1  -------  
   	`SECTION_ASCII` 
   	Hey you, keep looking :)  
     -------  SEC2  -------
