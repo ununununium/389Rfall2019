@@ -42,9 +42,9 @@ you'd like to develop in Python.
  - `parser.py`
 2. Parse `greetz.fpff`, and report the following information:
     1. When was `greetz.fpff` generated?
-     - 2019-03-27 00:15:05
+     	- 2019-03-27 00:15:05
     2. Who authored `greetz.fpff`?
-     - fl1nch
+     	- fl1nch
     3. List each section, giving us the data in it *and* its type.  
   		-  -------  SEC1  -------  
   	`SECTION_ASCII` 
