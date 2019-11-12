@@ -62,11 +62,11 @@ you'd like to develop in Python.
 	`SECTION_ASCII`
 	Q01TQzM4OVIte2hleV9oM3lfeTBVX3lvdV9JX2RvbnRfbGlrZV95b3VyX2Jhc2U2NF9lbmNvZGluZ30=  
 
-    4. Report *at least* one flag hidden in `greetz.fpff`. Any other flag found will count as bonus points towards the *competition* portion of the syllabus.  
+4. Report *at least* one flag hidden in `greetz.fpff`. Any other flag found will count as bonus points towards the *competition* portion of the syllabus.  
      - ```CMSC389R-{h0w_2_iNt0_DNS_r3c0Rd5}``` : From txt records of the DNS. 
      - ```CMSC389R-{0M3G4LUL_G3T_pWN3d_N00b}```: From the reddit post on the user  v0idcache  
      - ```}R983CSMC_perg_tndid_u0y_yllufep0h{-R983CSMC``` or revesed ```CMSC389R-{h0pefully_y0udidnt_grep_CMSC389R}```: From greetz.fpff section 3.  
-     - ``CMSC389R-{w3lc0me_b@ck_fr0m_spr1ng_br3ak}`: From the embeded png file.
+     - `CMSC389R-{w3lc0me_b@ck_fr0m_spr1ng_br3ak}`: From the embeded png file.
 
 
 
